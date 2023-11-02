@@ -1,8 +1,8 @@
 import requests
 from flask import *
 from datetime import timedelta
-# from gevent import monkey
-# monkey.patch_all()
+from gevent import monkey
+monkey.patch_all()
 
 class AI:
     def __init__(self, API_BASE_URL: str, API_KEY: str):
@@ -46,5 +46,3 @@ def api():
 def clear():
     session.clear()
     return redirect('/')
-    
-app.run()
