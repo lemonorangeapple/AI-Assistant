@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AI助手</title>
+        <link rel="stylesheet" href="../static/bootstrap.min.css">
+    </head>
+    <body class="overflow-y-hidden">
+        <div id="context" class="overflow-y-scroll" style="height: 60vh;">
+        {% for text in context %}
+        <div style="text-align: right;">
+            <div class="card m-3" style="width: 75%; display: inline-block;">
+                <h5 class="card-title m-3 text-end">你</h5>
+                <div class="card-body m-3 text-end text-break">
+                    {{ text['question'] }}
+                </div>
+            </div>
+        </div>
+        <div style="text-align: left;">
+            <div class="card m-3" style="width: 75%; display: inline-block;">
+                <h5 class="card-title m-3 text-start">AI助手</h5>
+                <div class="card-body m-3 text-start text-break">
+                    {{ text['answer'] | safe }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        <div style="text-align: center;" style="height: 40vh;">
+            <div class="card m-3" style="width: 75%; display: inline-block;">
+                <form class="card-body" method="post" action="/api">
+                    <div class="input-group">
+                        <textarea class="form-control m-2" name="question"></textarea>
+                    </div>
+                    <button class="btn btn-primary m-2" type="submit">提交</button>
+                    <a class="btn btn-primary m-2" type="button" href="/clear">清除对话内容</a>
+                </form>
+                <p style="font-size: 12px; color: grey;">本AI助手为Meta公司研发的llama-2-7b-chat-int8模型</p>
+            </div>
+        </div>
+    </body>
+</html>
