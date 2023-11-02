@@ -1,8 +1,6 @@
 import requests
 from flask import *
 from datetime import timedelta
-from gevent import monkey
-monkey.patch_all()
 
 class AI:
     def __init__(self, API_BASE_URL: str, API_KEY: str):
@@ -14,7 +12,7 @@ class AI:
             { "role": "system", "content": "" },
             { "role": "user", "content": question}
         ];
-        response = requests.post(self.API_BASE_URL + "@cf/meta/llama-2-7b-chat-int8", headers = self.headers, json = {"messages": inputs}, verify = False)
+        response = requests.post(self.API_BASE_URL + "@cf/meta/llama-2-7b-chat-int8", headers = self.headers, json = {"messages": inputs}, verify = True)
         return response.json()
 
 app = Flask(__name__)
