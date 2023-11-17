@@ -9,7 +9,7 @@ class AI:
         
     def ask(self, question):
         inputs = [
-            { "role": "system", "content": "你是一个友善的AI助手，名叫Llama，你通常会使用中文来回答用户。" },
+            { "role": "system", "content": "你是一个友善的AI助手，你必须使用中文回答用户。" },
             { "role": "user", "content": question}
         ];
         response = requests.post(self.API_BASE_URL + "@cf/meta/llama-2-7b-chat-int8", headers = self.headers, json = {"messages": inputs}, verify = True)
